@@ -1,0 +1,21 @@
+version: '3'
+# List of all services that we want to run
+services:
+  # This is our Node.js app what we've already built
+  web:
+    # Indicate the location of the Dockerfile
+    build: .
+    # Port forwarding configuration like run a container with -p flag
+    ports: 
+      - '5000:5000'
+  
+  # This is our MongoDB database
+  db:
+    image: 'mongo'
+    # Using shared-data volume and mount it to the /data dicrectory
+    volumes:
+      - shared-data:/data
+    
+# Define a volume to store the database
+volumes:
+  shared-data:
